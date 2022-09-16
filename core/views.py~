@@ -4,6 +4,7 @@ from accounts.models import Mediator, Account, Category
 from .models import Dispute, Session
 from decimal import Decimal
 from django.views.decorators.http import require_http_methods
+from dateutil.parser import parse as date_parser
 
 
 # Create your views here.
@@ -14,9 +15,16 @@ def landing(request):
 
 def dashboard(request):
 	template = "core/dashboard"
-	account = Account.objects.get(user=request.user)
+	
+	account_filter = Account.objects.filter(user=request.user)
+	if account_filter:
+		account = account_filter[0]
+	elif mediator_filter:
+		account = Mediator.objects.filter(user=request.user)
+		
 	context = {
-		"disputes": Dispute.objects.filter(parties=account)
+		"disputes": 
+		"account": account,
 	}
 	return render(request, template, context)
 

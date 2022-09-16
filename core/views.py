@@ -15,9 +15,13 @@ def landing(request):
 
 def dashboard(request):
 	template = "core/dashboard"
+	
 	account = Account.objects.get(user=request.user)
+	disputes = Dispute.objects.filter(parties=account)
+	
 	context = {
-		"disputes": Dispute.objects.filter(parties=account)
+		"disputes": disputes,
+		"account": account,
 	}
 	return render(request, template, context)
 
