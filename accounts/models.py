@@ -18,6 +18,10 @@ class Affiliation(models.Model):
 class Category(models.Model):
 	name = models.CharField(blank=True, null=True, max_length=300)
 	
+	class Meta:
+		verbose_name = "Category"
+		verbose_name_plural = "Categories"
+	
 	def __str__(self):
 		return self.name
 		
