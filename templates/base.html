@@ -22,10 +22,15 @@
     Disputes
   </a>
   <div class="right menu">
-   
+   {% if account %}
     <a class="ui item" href="{% url 'accounts:account' account.id %}">
       Account
     </a>
+    {% elif mediator %}
+    <a class="ui item" href="{% url 'accounts:mediator' mediator.id %}">
+      Account
+    </a>
+    {% endif %}
   </div>
 </div>
 

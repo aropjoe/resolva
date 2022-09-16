@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-<h3>{{session.dispute.name}}</h3>
+<h3><i class="ui black briefcase icon"></i> {{session.dispute.name}}</h3>
           
 <div class="ui grid container">
 	<div class="four wide column">
-	<form class="ui form" action="{% url 'core:upload' %}" method="POST" enctype="multipart/form-data">
+	<form class="ui form" action="{% url 'core:upload' session.dispute.id %}" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div class="field">
 	<div class="label">Upload file</div>

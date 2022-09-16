@@ -7,9 +7,10 @@
 {% block body %}
 <div class="ui text container">
 
-<h3>{{dispute.name}}</h3>
+<h3><i class="ui black briefcase icon"></i> {{dispute.name}}</h3>
 <p><b>Summary</b></p>
 <p>{{dispute.summary}}</p>
+<a class="ui tiny black button" href="{% url 'core:create_session' %}">Create Session</a>
 <div class="ui section divider"></div>
 <p><b>Parties</b></p>
 <div class="ui horizontal list">

@@ -9,7 +9,7 @@
           
 <div class="ui grid container">
 	<div class="four wide column">
-	<form class="ui form" action="{% url 'core:upload' %}" method="POST" enctype="multipart/form-data">
+	<form class="ui form" action="{% url 'core:upload' session.id %}" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div class="field">
 	<div class="label">Upload file</div>

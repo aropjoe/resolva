@@ -7,7 +7,8 @@
 {% block body %}
 <div class="ui text container blue segment">
 <h3>CREATE SESSSION</h3>
-<form class="ui form" method="POST" action="{% url 'accounts:login' %}">
+<br>
+<form class="ui form" method="POST" action="{% url 'core:create_session' %}">
   {% csrf_token %}
   <div class="field">
     <label>Date</label>

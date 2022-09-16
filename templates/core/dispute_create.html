@@ -7,7 +7,7 @@
 {% block body %}
 <div class="ui text container segment">
 <h3>NEW DISPUTE</h3>
-<form class="ui form" method="POST" action="{% url 'accounts:login' %}">
+<form class="ui form" method="POST" action="{% url 'core:create_dispute' %}">
   {% csrf_token %}
   <div class="field">
     <label>Name</label>
@@ -25,7 +25,7 @@
           <input type="text" name="parties">
   </div>
   <div class="field">
-            <label for="month">Category</label>
+            <label for="categories">Category</label>
             <select class="ui fluid search dropdown" name="categories">
               <option value="">Select category</option>
              {% for cat in categories %}

@@ -6,6 +6,8 @@
 
 {% block body %}
 <div class="ui text container segment">
+<a class="ui orange button" href="{% url 'core:create_dispute' %}">New Dispute</a>
+<br>
 <h3>DISPUTES</h3>
 <table class="ui striped table">
   <thead>
@@ -21,7 +23,7 @@
   <tbody>
   {% for dispute in disputes %}
     <tr>
-      <td>{{dispute.name}}</td>
+      <td><a href="{% url 'core:dispute' dispute.id %}">{{dispute.name}}</a></td>
       <td>{{dispute.creator}}</td>
       <td>
       {% for acc in dispute.parties.all %}
@@ -36,8 +38,8 @@
       <div class="ui blue horizontal label">{{cat.name}}</div>
       {% endfor %}
       </td>
-      <td>{{disute.date_opened}}</td>
-      <td>{{disute.date_updated}}</td>
+      <td>{{dispute.date_opened}}</td>
+      <td>{{dispute.date_updated}}</td>
     </tr>
   {% endfor %}
   </tbody>

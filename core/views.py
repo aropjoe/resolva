@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from accounts.models import Mediator, Account, Category
-from .models import Dispute, Session
+from .models import Dispute, Session, SessionFile, SessionMessage
 from decimal import Decimal
 from django.views.decorators.http import require_http_methods
 from dateutil.parser import parse as date_parser
@@ -32,14 +32,16 @@ def dashboard(request):
 
 def create_dispute(request):
 	template = "core/dispute_create.html"
+	account = Account.objects.get(user=request.user)
 	
 	if request.method == "POST":
 		name = request.POST["name"]
 		summary = request.POST["summary"]
-		parties = request.GET.getlist["parties"]
-		selected_categories = request.GET.getlist["categories"]
+		parties = request.GET.getlist("parties")
+		print(parties)
+		selected_categories = request.GET.getlist("categories")
 		
-		dispute = Dispute.objects.create(name=name, summary=sumary, creator=request.account)
+		dispute = Dispute.objects.create(name=name, summary=summary, creator=account)
 		
 		for category in selected_categories:
 			cat = Category.objects.get(id=category)
@@ -49,13 +51,14 @@ def create_dispute(request):
 		for party in parties:
 			acc = Account.objects.get(email=party)
 			dispute.parties.add(acc)
-		dispute.parties.add(request.account)
+		dispute.parties.add(account)
 		dispute.save()
 		
 		return redirect("core:dispute", id=dispute.id)
 	else:
 		context = {
 			"categories": Category.objects.all(),
+			"account": account,
 		}
 		return render(request, template, context)
 		
@@ -72,9 +75,11 @@ def delete_dispute(request):
 
 def view_dispute(request, id):
 	dispute = Dispute.objects.get(id=id)
+	account = Account.objects.get(user=request.user)
 	template = "core/dispute.html"
 	context = {
-		"dispute": dispute,	
+		"dispute": dispute,
+		"account": account,
 	}
 	return render(request, template, context)
 	
@@ -83,6 +88,7 @@ def create_session(request, id):
 	template = "core/session_create.html"
 	dispute = Dispute.objects.get(id=id)
 	mediator = Mediator.objects.all()[0]
+	account = Account.objects.get(user=request.user)
 	
 	if request.method == "POST":
 		datetime = request.POST["datetime"]
@@ -99,15 +105,18 @@ def create_session(request, id):
 		context = {
 			"dispute": dispute,
 			"mediators": Mediator.objects.all(),
+			"account": account,
 		}
 		return render(request, template, context)
 		
 		
 def view_session(request, id):
 	template = "core/session.html"
+	account = Account.objects.get(user=request.user)
 	session = Session.objects.get(id=id)
 	context = {
 		"session": session,	
+		"account": account,
 	}
 	return render(request, template, context)
 	
@@ -121,8 +130,10 @@ def upload_file(request, id):
 			file_type = file_name.split(".")[-1]
 			file_size = Decimal(_file.size / (1024 * 1024))
 			
-			session_file = SessionFile.objects.create(file_name=file_name, file_tye=file_type, file_size=file_size, session=session, file=_file)
+			session_file = SessionFile.objects.create(file_name=file_name, file_type=file_type, file_size=file_size, session=session, file=_file)
 			session_file.save()
+			
+			return redirect("core:session", id=id)
 			
 	else:
 		return redirect("core:session", id=session.id)
