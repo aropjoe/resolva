@@ -6,7 +6,7 @@
 
 {% block body %}
 <div>
-<form class="ui form" method="POST" action="{% url 'accounts:login' %}">
+<form class="ui form" method="POST" action="{% url 'accounts:add_affiliation' %}">
   {% csrf_token %}
   <div class="field">
     <label>Affiliation</label>

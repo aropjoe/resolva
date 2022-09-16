@@ -143,7 +143,7 @@ def add_affiliation(request):
 		return render(request, template, context)
 		
 def add_qualification(request):
-	mediator = Mediator.objects.get(user=user)
+	mediator = Mediator.objects.get(user=request.user)
 	template = "accounts/qualification_add.html"
 	context = {
 		"mediator": mediator,

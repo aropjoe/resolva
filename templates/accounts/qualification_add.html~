@@ -18,7 +18,7 @@
   </div>
   <div class="field">
     <label>Date Acquired</label>
-    <input type="text" name="date_acquired">
+    <input required name="date_acquired" type="datetime-local" />
   </div>
   <button class="ui button" type="submit">Add</button>
 </form>

@@ -36,7 +36,8 @@
   </div>
 </div>
 
-
+<div class="ui section divider"></div>
+<p><b>Categories</b></p>
 <div class="ui list">
 {% for cat in dispute.categories.all %}
   <div class="item">

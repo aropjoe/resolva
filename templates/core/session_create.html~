@@ -5,12 +5,14 @@
 {% endblock %}
 
 {% block body %}
-<div>
+<div class="ui text container blue segment">
+<h3>CREATE SESSSION</h3>
 <form class="ui form" method="POST" action="{% url 'accounts:login' %}">
   {% csrf_token %}
   <div class="field">
     <label>Date</label>
-    <input type="text" name="datetime" placeholder="Date">
+    <input required name="datetime" type="datetime-local" />
+               
   </div>
   
   <button type="submit" class="ui blue button">Save</button>

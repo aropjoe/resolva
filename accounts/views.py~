@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Account, Qualification, Affiliation, Mediator, Category, Language
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
+from dateutil.parser import parse as date_parser
 
 # Create your views here.
 
@@ -152,6 +153,7 @@ def add_qualification(request):
 		institution = request.POST["institution"]
 		name = request.POST["name"]
 		date_acquired = request.POST["date_acquired"]
+		date_acquired = date_parser(date_acquired)
 		
 		qualification = Qualification.objects.create(institution=institution, name=name, date_acquired=date_acquired, mediator=mediator)
 		qualification.save()

@@ -10,7 +10,8 @@ urlpatterns = [
     path("delete-dispute/", views.delete_dispute, name="delete_dispute"),
     path("create-dispute/", views.create_dispute, name="create_dispute"),
     path("dashboard/", views.dashboard, name="dashboard"),
+    path("disputes/", views.dashboard, name="disputes"),
     path("", views.landing, name="landing"),
     path("new-message/", views.new_message, name="new_message"),
-    pa
+    pah("file-upload/", views.upload_file, name="upload"),
 ]

@@ -14,10 +14,32 @@
 
 <body>
 	<div class="ui container">
+	<div class="ui secondary  menu">
+  <a class="active item">
+    Resolva
+  </a>
+  <a class="item" href="{% url 'core:disputes' %}">
+    Disputes
+  </a>
+  <div class="right menu">
+   
+    <a class="ui item" href="{% url 'accounts:account' account.id %}">
+      Account
+    </a>
+  </div>
+</div>
+
+<br>
+<br>
 	{% block body %}
 	
 	{% endblock %}
 	</div>
+	
+	<script>
+	  $(".dropdown").dropdown();
+	
+	</script>
 </body>
 
 </html>

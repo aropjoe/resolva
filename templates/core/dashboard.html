@@ -5,7 +5,42 @@
 {% endblock %}
 
 {% block body %}
-<div>
-
+<div class="ui text container segment">
+<h3>DISPUTES</h3>
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Creator</th>
+      <th>Parties</th>
+      <th>Category</th>
+      <th>Date Opened</th>
+      <th>Date Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for dispute in disputes %}
+    <tr>
+      <td>{{dispute.name}}</td>
+      <td>{{dispute.creator}}</td>
+      <td>
+      {% for acc in dispute.parties.all %}
+      <a class="ui label">
+		  <img class="ui right spaced avatar image" src="{{acc.image.url}}">
+		  {{acc.fullname}}
+		</a>
+		{% endfor %}
+	</td>
+      <td>
+      {% for cat in dispute.categories.all %}
+      <div class="ui blue horizontal label">{{cat.name}}</div>
+      {% endfor %}
+      </td>
+      <td>{{disute.date_opened}}</td>
+      <td>{{disute.date_updated}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 </div>
 {% endblock %}

@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block body %}
-<div>
+<div class="ui text container segment">
+<h3>NEW DISPUTE</h3>
 <form class="ui form" method="POST" action="{% url 'accounts:login' %}">
   {% csrf_token %}
   <div class="field">

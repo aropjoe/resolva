@@ -4,8 +4,8 @@ from django.urls import path
 app_name = "accounts"
 
 urlpatterns = [
-    path('mediator/details/', views.view_mediator, name="mediator"),
-    path("account/details/", views.view_account, name="account"),
+    path('mediator/details/<id>/', views.view_mediator, name="mediator"),
+    path("account/details/<id>/", views.view_account, name="account"),
     path("add-qualification/", views.add_qualification, name="add_qualification"),
     path("add-affiliation/", views.add_affiliation, name="add_affiliation"),
     path("mediator/create/", views.create_mediator, name="create_mediator"),

@@ -20,9 +20,9 @@
   <div class="field">
           <label>Parties</label>
           <input type="text" name="parties">
-                    <input type="text" name="parties">
-                              <input type="text" name="parties">
-        </div>
+          <input type="text" name="parties">
+          <input type="text" name="parties">
+  </div>
   <div class="field">
             <label for="month">Category</label>
             <select class="ui fluid search dropdown" name="categories">

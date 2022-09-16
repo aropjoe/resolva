@@ -24,6 +24,10 @@
     <input type="text" name="username" placeholder="Email">
   </div>
   <div class="field">
+	<div class="label">Image</div>
+	<input id="file-upload" type="file" name="image" />
+	</div>
+  <div class="field">
           <label for="password">Phone</label>
           <input type="number" name="phone">
         </div>

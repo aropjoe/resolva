@@ -6,6 +6,7 @@
 
 {% block body %}
 <div>
+<h3>Add Qualification</h3>
 <form class="ui form" method="POST" action="{% url 'accounts:add_qualification' %}">
   {% csrf_token %}
   <div class="field">

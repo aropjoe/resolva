@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block body %}
-<div>
+<div class="ui text container blue segment">
+<h3>Add Affiliation</h3>
 <form class="ui form" method="POST" action="{% url 'accounts:add_affiliation' %}">
   {% csrf_token %}
   <div class="field">
     <label>Affiliation</label>
     <input type="text" name="name" placeholder="Ex Institute of Chartered Mediators and Conciliators">
   </div>
-  <button class="ui button" type="submit">Add</button>
+  <button class="ui blue button" type="submit">Add</button>
 </form>
 </div>
 {% endblock %}
