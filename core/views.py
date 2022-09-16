@@ -14,7 +14,7 @@ def landing(request):
 	context = {
 		"account": account,
 	}
-	return render(request, template, account)
+	return render(request, template, context)
 
 
 def dashboard(request):
