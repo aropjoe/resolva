@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Mediator | Resolva</title>
+{% endblock %}
+
+{% block body %}
+<div class="ui text container">
+
+<h3>{{mediator.first_name}} {{mediator.last_name}}</h3>
+<p><b>Location</b></p>
+<p>{{mediator.location}}</p>
+<p><b>Email</b></p>
+<p><b>Email</b></p>
+<p>{{mediator.email}}</p>
+<p><b>Phone</b></p>
+<p>{{mediator.phone}}</p>
+
+<div class="ui section divider"></div>
+<p><b>Summary</b></p>
+<p>{{mediator.summary}}</p>
+
+<div class="ui section divider"></div>
+<p><b>Qualifications</b></p>
+<a class="ui orange button" href="{% url 'accounts:add_qualification' %}">Add Qualification</a>
+{% for qua in mediator.qualifications.all %}
+<p><b>{{qua.name}}:</b> {{qua.institution}}
+<br>
+{{qua.date_acquired}}
+</p>
+{% endfor %}
+
+<div class="ui section divider"></div>
+<p><b>Affiliations</b></p>
+<a class="ui orange button" href="{% url 'accounts:add_affiliation' %}">Add Affiliation</a>
+{% for affiliation in mediator.affiliations.all %}
+<p>{{affiliation}}</p>
+{% endfor %}
+
+</div>
+{% endblock %} 

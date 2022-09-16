@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Resolva Login</title>
+{% endblock %}
+
+{% block body %}
+<div>
+<form class="ui form" method="POST" action="{% url 'accounts:login' %}">
+  {% csrf_token %}
+  <div class="field">
+    <label>Email</label>
+    <input type="text" name="username" placeholder="Email">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="password" name="password" placeholder="********">
+  </div>
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" tabindex="0" class="hidden">
+      <label>Keep me signed in</label>
+    </div>
+  </div>
+  <button class="ui button" type="submit">Login</button>
+</form>
+</div>
+{% endblock %}

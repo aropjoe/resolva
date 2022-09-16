@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Create session | Resolva </title>
+{% endblock %}
+
+{% block body %}
+<div>
+<form class="ui form" method="POST" action="{% url 'accounts:login' %}">
+  {% csrf_token %}
+  <div class="field">
+    <label>Date</label>
+    <input required name="datetime" type="datetime-local" />
+               
+  </div>
+  
+  <button type="submit" class="ui blue button">Save</button>
+</form>
+
+</div>
+{% endblock %}

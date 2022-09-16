@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Session | Resolva </title>
+{% endblock %}
+
+{% block body %}
+
+          
+<div class="ui grid container">
+	<div class="four wide column">
+	<form class="ui form" action="{% url 'core:upload' %}" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="field">
+	<div class="label">Upload file</div>
+	<input id="file-upload" type="file" name="upload_file[]" multiple />
+	</div>
+	<button class="ui button" type="submit">Upload</button>
+	</form>
+	<div class="ui section divider"></div>
+	<div class="ui middle aligned selection list">
+	{% for file in session.files %}
+	<a class="item" href="{{file.file.url}}">{{file.file_name}}</a>
+	{% endfor %}
+	</div>
+	</div>
+	<div class="twelve wide column">
+	<div class="ui feed" style="margin-top: 5px;">
+  <div id="stickdiv" class="board-header">
+  
+<div class="event">
+    <div class="label">
+      <img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+    </div>
+    <div class="content">
+      <div class="summary">
+        <a>Joe Henderson</a>
+        <div class="date">
+          3 days ago
+        </div>
+      </div>
+      <div class="extra text">
+        Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+      </div>
+    </div>
+  </div>
+  {% for message in session.messages %}
+  <div class="event">
+    <div class="label">
+      <img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+    </div>
+    <div class="content">
+      <div class="summary">
+        <a>{{message.username}}</a>
+        <div class="date">
+          {{message.timestamp}}
+        </div>
+      </div>
+      <div class="extra text">
+        {{message.content}}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+	</div>
+	</div>
+</div>
+
+</div>
+
+  <div style="padding-left: 30px; padding-right: 30px; padding-bottom: 20px;">
+    <form class="ui form" id="message_form">
+    	{% csrf_token %}
+      <div class="field">
+        <label>New message</label>
+        <textarea rows="2" id="chat-message-input"></textarea>
+      </div>
+      <input class="compact ui blue button" id="chat-message-submit" type="button" value="Send" />
+    </form>
+  </div>
+</div>
+
+
+<script>
+ window.onscroll = function() {
+    myFunction()
+  };
+  var header = document.getElementById("stickdiv");
+  var stick = header.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset > stick) {
+      header.classList.add("stick");
+    } else {
+      header.classList.remove("stick");
+    }
+  }
+  
+  $("#chat-message-submit").click(function() {
+    $.ajax({
+      url: "{% url 'core:new_message' %}",
+      type: 'POST',
+      data: $("#message_form").serialize(),
+      cache: false,
+      success: function(data) {
+          
+  $(".feed").append(
+      `
+       <div class="event">
+           <div class="label">
+             <img src="${data.sender.image.url}">
+           </div>
+           <div class="content">
+             <div class="summary">
+               <a class="sender">${data.sender}</a>
+                <div class="date"> ${data.message.timestamp}</div>
+             </div>
+             <div class="extra text">
+               ${data.message.content}
+             </div>
+           </div>
+       </div>
+       `
+    );
+      },
+    });
+  });
+  
+
+    
+</script>
+{% endblock %}

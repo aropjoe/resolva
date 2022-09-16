@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Add Qualification | Resolva</title>
+{% endblock %}
+
+{% block body %}
+<div>
+<form class="ui form" method="POST" action="{% url 'accounts:add_qualification' %}">
+  {% csrf_token %}
+  <div class="field">
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Ex. Fellow">
+  </div>
+  <div class="field">
+    <label>Institution</label>
+    <input type="text" name="institution" placeholder="Ex Institute of Chartered Mediators and Conciliators">
+  </div>
+  <div class="field">
+    <label>Date Acquired</label>
+    <input type="text" name="date_acquired">
+  </div>
+  <button class="ui button" type="submit">Add</button>
+</form>
+</div>
+{% endblock %}

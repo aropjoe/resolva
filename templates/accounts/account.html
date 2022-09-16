@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Account | Resolva</title>
+{% endblock %}
+
+{% block body %}
+<div class="ui text container">
+
+<h3>{{account.first_name}} {{account.last_name}}</h3>
+<p><b>Email</b></p>
+<p>{{account.email}}</p>
+<p><b>Phone</b></p>
+<p>{{account.phone}}</p>
+<div class="ui section divider"></div>
+</div>
+{% endblock %}

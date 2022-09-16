@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Resolva Mediator Signup</title>
+{% endblock %}
+
+{% block body %}
+<div>
+<form class="ui form" method="POST" action="{% url 'accounts:login' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="field">
+    <label>Name</label>
+    <div class="two fields">
+      <div class="field">
+        <input type="text" name="first_name" placeholder="First Name">
+      </div>
+      <div class="field">
+        <input type="text" name="last_name" placeholder="Last Name">
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <label>Email</label>
+    <input type="text" name="username" placeholder="Email">
+  </div>
+  <div class="field">
+          <label for="password">Phone</label>
+          <input type="number" name="phone">
+        </div>
+  <div class="field">
+            <label for="month">Languages</label>
+            <select class="ui fluid search dropdown" name="languages">
+              <option value="">Select languages</option>
+              <option value="English">English</option>
+              <option value="Latin">Latin</option>
+              <option value="Yoruba">Yoruba</option>
+              <option value="Hausa">Hausa</option>
+              <option value="Igbo">Igbo</option>
+              <option value="Efik">Efik</option>
+            </select>
+          </div>
+   <div class="field">
+    <label>Bio Summary</label>
+    <textarea name="summary"></textarea>
+  </div>
+  
+  <div class="field">
+    <label>Location</label>
+    <input type="text" name="location" placeholder="ex Lagos, Nigeria">
+  </div>
+  
+  <div class="field">
+    <label>Password</label>
+    <input type="password" name="password" placeholder="********">
+  </div>
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" tabindex="0" class="hidden">
+      <label>I agree to the Terms and Conditions</label>
+    </div>
+  </div>
+  <button class="ui button" type="submit">Login</button>
+</form>
+</div>
+{% endblock %}
+
+
+

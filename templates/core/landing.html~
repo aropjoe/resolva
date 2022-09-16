@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Where matters get settled | Resolva </title>
+{% endblock %}
+
+{% block body %}
+<div>
+
+</div>
+{% endblock %}

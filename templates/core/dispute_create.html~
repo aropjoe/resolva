@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>New dispute | Resolva</title>
+{% endblock %}
+
+{% block body %}
+<div>
+<form class="ui form" method="POST" action="{% url 'accounts:login' %}">
+  {% csrf_token %}
+  <div class="field">
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Dispute Name">
+  </div>
+  <div class="field">
+    <label>Summary</label>
+<textarea name="summary"></textarea>
+  </div>
+  
+  <div class="field">
+          <label>Parties</label>
+          <input type="text" name="parties">
+                    <input type="text" name="parties">
+                              <input type="text" name="parties">
+        </div>
+  <div class="field">
+            <label for="month">Category</label>
+            <select class="ui fluid search dropdown" name="categories">
+              <option value="">Select category</option>
+             {% for cat in categories %}
+              <option value="{{cat.name}}">{{cat.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+  <button class="ui button" type="submit">Create</button>
+</form>
+</div>
+{% endblock %}
+
+
+
