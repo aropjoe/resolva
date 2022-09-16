@@ -15,7 +15,7 @@
 <body>
 	<div class="ui container">
 	<div class="ui secondary  menu">
-  <a class="active item">
+  <a class="active item" href="{% url 'core:dashboard' %}">
     Resolva
   </a>
   <a class="item" href="{% url 'core:disputes' %}">
@@ -23,7 +23,7 @@
   </a>
   <div class="right menu">
    
-    <a class="ui item" href="{% url 'accounts:account' account.id %}">
+    <a class="ui item" href="{% url 'accounts:account' account.pk %}">
       Account
     </a>
   </div>

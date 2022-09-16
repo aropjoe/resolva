@@ -10,11 +10,15 @@ from dateutil.parser import parse as date_parser
 # Create your views here.
 def landing(request):
 	template = "core/landing.html"
-	return render(request, template)
+	account = Account.objects.get(user=request.user)
+	context = {
+		"account": account,
+	}
+	return render(request, template, account)
 
 
 def dashboard(request):
-	template = "core/dashboard"
+	template = "core/dashboard.html"
 	
 	account = Account.objects.get(user=request.user)
 	disputes = Dispute.objects.filter(parties=account)

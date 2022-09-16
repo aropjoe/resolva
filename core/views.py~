@@ -14,16 +14,13 @@ def landing(request):
 
 
 def dashboard(request):
-	template = "core/dashboard"
+	template = "core/dashboard.html"
 	
-	account_filter = Account.objects.filter(user=request.user)
-	if account_filter:
-		account = account_filter[0]
-	elif mediator_filter:
-		account = Mediator.objects.filter(user=request.user)
-		
+	account = Account.objects.get(user=request.user)
+	disputes = Dispute.objects.filter(parties=account)
+	
 	context = {
-		"disputes": 
+		"disputes": disputes,
 		"account": account,
 	}
 	return render(request, template, context)
