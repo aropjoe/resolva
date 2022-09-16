@@ -33,6 +33,7 @@ class Session(models.Model):
 	def messages(self):
 		return SessionMessage.objects.filter(session=self)
 		
+		
 class SessionFile(models.Model):
 	session = models.ForeignKey(Session, on_delete=models.CASCADE)
 	file = models.FileField(upload_to="files")
