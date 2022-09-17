@@ -7,7 +7,7 @@
 {% block body %}
 <div>
 <h3>NEW MEDIATOR</h3>
-<form class="ui form" method="POST" action="{% url 'accounts:login' %}" enctype="multipart/form-data">
+<form class="ui form" method="POST" action="{% url 'accounts:create_mediator' %}" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="field">
     <label>Name</label>
@@ -29,12 +29,12 @@
 	<input id="file-upload" type="file" name="image" />
 	</div>
   <div class="field">
-          <label for="password">Phone</label>
+          <label for="phone">Phone</label>
           <input type="number" name="phone">
         </div>
   <div class="field">
-            <label for="month">Languages</label>
-            <select class="ui fluid search dropdown" name="languages">
+            <label for="languages">Languages</label>
+            <select multiple="" class="ui fluid search dropdown" name="languages">
               <option value="">Select languages</option>
               <option value="English">English</option>
               <option value="Latin">Latin</option>
@@ -64,7 +64,7 @@
       <label>I agree to the Terms and Conditions</label>
     </div>
   </div>
-  <button class="ui button" type="submit">Login</button>
+  <button class="ui black button" type="submit">Login</button>
 </form>
 </div>
 {% endblock %}

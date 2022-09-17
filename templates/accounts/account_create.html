@@ -7,7 +7,7 @@
 {% block body %}
 <div>
 <h3>NEW ACCOUNT</h3>
-<form class="ui form" method="POST" action="{% url 'accounts:login' %}" enctype="multipart/form-data">
+<form class="ui form" method="POST" action="{% url 'accounts:create_account' %}" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="field">
     <label>Name</label>
@@ -26,14 +26,14 @@
 	</div>
   <div class="field">
     <label>Email</label>
-    <input type="text" name="username" placeholder="Email">
+    <input type="text" name="email" placeholder="Email">
   </div>
   <div class="field">
-          <label for="password">Phone</label>
+          <label for="phone">Phone</label>
           <input type="number" name="phone">
         </div>
   <div class="field">
-            <label for="month">Languages</label>
+            <label for="languages">Languages</label>
             <select multiple="" class="ui fluid search dropdown" name="languages">
               <option value="">Select languages</option>
               <option value="English">English</option>
@@ -44,6 +44,7 @@
               <option value="Efik">Efik</option>
             </select>
           </div>
+          <br>
   <div class="field">
     <label>Password</label>
     <input type="password" name="password" placeholder="********">
@@ -54,7 +55,7 @@
       <label>I agree to the Terms and Conditions</label>
     </div>
   </div>
-  <button class="ui button" type="submit">Login</button>
+  <button class="ui blue button" type="submit">Login</button>
 </form>
 </div>
 {% endblock %}
