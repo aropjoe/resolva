@@ -31,7 +31,7 @@
     </a>
     {% elif mediator %}
     <a class="ui item" href="{% url 'accounts:mediator' mediator.id %}">
-      Account
+      My Account
     </a>
     {% endif %}
   </div>
