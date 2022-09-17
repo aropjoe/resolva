@@ -32,6 +32,15 @@ def view_mediator(request, id):
 	template = "accounts/mediator.html"
 	return render(request, template, context)
 
+def view_mediators(request):
+	mediators = Mediator.objects.all()
+	context = {
+		"mediators": mediators,
+	}
+	template = "accounts/mediators.html"
+	return render(request, template, context)
+
+
 	
 def view_account(request, id):
 	account = Account.objects.get(id=id)
@@ -59,9 +68,9 @@ def create_account(request):
 		email = request.POST["email"]
 		phone = request.POST["phone"]
 		password = request.POST["password"]
-		languages = request.GET.getlist("languages")
+		languages = request.POST.getlist("languages")
 		
-		user = User.objects.create(username=email, password=password)
+		user = User.objects.create(username=email, first_name=first_name, last_name=last_name, email=email, password=password)
 		user.save()
 		
 		account = Account.objects.create(first_name=first_name, last_name=last_name, email=email, phone=phone, user=user)
@@ -102,9 +111,9 @@ def create_mediator(request):
 		location = request.POST["location"]
 		phone = request.POST["phone"]
 		password = request.POST["password"]
-		languages = request.GET.getlist("languages")
+		languages = request.POST.getlist("languages")
 		
-		user = User.objects.create(username=email, password=password)
+		user = User.objects.create(username=email, first_name=first_name, last_name=last_name, email=email, password=password)
 		user.save()
 		
 		mediator = Mediator.objects.create(first_name=first_name, last_name=last_name, email=email, phone=phone, user=user, summary=summary, location=location)

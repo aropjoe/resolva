@@ -26,7 +26,7 @@
   </div>
   <div class="field">
             <label for="categories">Category</label>
-            <select class="ui fluid search dropdown" name="categories">
+            <select multiple="" class="ui fluid search dropdown" name="categories">
               <option value="">Select category</option>
              {% for cat in categories %}
               <option value="{{cat.name}}">{{cat.name}}</option>

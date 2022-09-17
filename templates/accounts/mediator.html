@@ -6,13 +6,17 @@
 
 {% block body %}
 <div class="ui text container">
-
+<div class="ui rounded small image">
+      <img src="{{mediator.image.url}}">
+    </div>
 <h3>{{mediator.first_name}} {{mediator.last_name}}</h3>
+<div class="ui section divider"></div>
 <p><b>Location</b></p>
 <p>{{mediator.location}}</p>
-<p><b>Email</b></p>
+<div class="ui section divider"></div>
 <p><b>Email</b></p>
 <p>{{mediator.email}}</p>
+<div class="ui section divider"></div>
 <p><b>Phone</b></p>
 <p>{{mediator.phone}}</p>
 
@@ -22,7 +26,9 @@
 
 <div class="ui section divider"></div>
 <p><b>Qualifications</b></p>
-<a class="ui orange button" href="{% url 'accounts:add_qualification' %}">Add Qualification</a>
+{% if request.user == mediator.user %}
+<a class="tiny ui orange button" href="{% url 'accounts:add_qualification' %}">Add Qualification</a>
+{% endif %}
 {% for qua in mediator.qualifications.all %}
 <p><b>{{qua.name}}:</b> {{qua.institution}}
 <br>
@@ -32,7 +38,9 @@
 
 <div class="ui section divider"></div>
 <p><b>Affiliations</b></p>
-<a class="ui orange button" href="{% url 'accounts:add_affiliation' %}">Add Affiliation</a>
+{% if request.user == mediator.user %}
+<a class="tiny ui orange button" href="{% url 'accounts:add_affiliation' %}">Add Affiliation</a>
+{% endif %}
 {% for affiliation in mediator.affiliations.all %}
 <p>{{affiliation}}</p>
 {% endfor %}

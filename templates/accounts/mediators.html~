@@ -6,7 +6,33 @@
 
 {% block body %}
 <div>
+<h3>MEDIATORS</h3>
 <div class="ui link cards">
+{% for mediator in mediators %}
+<div class="card">
+    <div class="image">
+      <img src="{{mediator.image.url}}">
+    </div>
+    <div class="content">
+      <div class="header">{{mediator.fullname}}</div>
+      <div class="meta">
+        <a>See reviews</a>
+      </div>
+      <div class="description">
+        {{mediator.summary}}
+      </div>
+    </div>
+    <div class="extra content">
+      <span class="right floated">
+        {{mediator.location}}
+      </span>
+      <span>
+        <i class="user icon"></i>
+        7+ Matters handled 
+      </span>
+    </div>
+  </div>
+{% endfor %}
   <div class="card">
     <div class="image">
       <img src="https://semantic-ui.com/images/avatar2/large/matthew.png">

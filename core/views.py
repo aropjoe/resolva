@@ -5,6 +5,7 @@ from .models import Dispute, Session, SessionFile, SessionMessage
 from decimal import Decimal
 from django.views.decorators.http import require_http_methods
 from dateutil.parser import parse as date_parser
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 
 
 # Create your views here.
@@ -37,20 +38,21 @@ def create_dispute(request):
 	if request.method == "POST":
 		name = request.POST["name"]
 		summary = request.POST["summary"]
-		parties = request.GET.getlist("parties")
+		parties = request.POST.getlist("parties")
 		print(parties)
-		selected_categories = request.GET.getlist("categories")
+		selected_categories = request.POST.getlist("categories")
 		
 		dispute = Dispute.objects.create(name=name, summary=summary, creator=account)
 		
 		for category in selected_categories:
-			cat = Category.objects.get(id=category)
+			cat = Category.objects.get(name=category)
 			dispute.categories.add(cat)
 		dispute.save()
 		
 		for party in parties:
-			acc = Account.objects.get(email=party)
-			dispute.parties.add(acc)
+			acc = Account.objects.filter(email=party)
+			if acc:
+				dispute.parties.add(acc[0])
 		dispute.parties.add(account)
 		dispute.save()
 		
@@ -106,6 +108,7 @@ def create_session(request, id):
 			"dispute": dispute,
 			"mediators": Mediator.objects.all(),
 			"account": account,
+			"mediator": mediator,
 		}
 		return render(request, template, context)
 		
@@ -147,7 +150,7 @@ def new_message(request):
 		session_id = request.POST["session_id"]
 		session = Session.objects.get(id=session_id)
 		
-		ses_message = SessionMessage.objects.create(session=session, message=message, sender=user)
+		ses_message = SessionMessage.objects.create(session=session, content=message, sender=user)
 		
 		account = Account.objects.filter(user=user)
 		mediator = Mediator.objects.filter(user=user)
@@ -158,8 +161,10 @@ def new_message(request):
 			sender = mediator[0]
 
 		context = {
-			"sender": sender,
-			"message": ses_message,
+			"sender_image_url": sender.image.url,
+			"sender_name": sender.fullname(),
+			"message": ses_message.content,
+			"message_time": ses_message.timestamp,
 		}
 		
 		return JsonResponse(context)

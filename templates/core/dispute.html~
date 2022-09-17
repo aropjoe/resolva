@@ -10,10 +10,19 @@
 <h3><i class="ui black briefcase icon"></i> {{dispute.name}}</h3>
 <p><b>Summary</b></p>
 <p>{{dispute.summary}}</p>
-<a class="ui tiny black button" href="{% url 'core:create_session' %}">Create Session</a>
+<a class="ui tiny black button" href="{% url 'core:create_session' dispute.id %}">Create Session</a>
 <div class="ui section divider"></div>
 <p><b>Parties</b></p>
 <div class="ui horizontal list">
+{% for par in dispute.parties.all %}
+<div class="item">
+    <img class="ui avatar image" src="{}">
+    <div class="content">
+      <div class="header">{{par.fullname}}</div>
+
+    </div>
+  </div>
+{% endfor %}
   <div class="item">
     <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/tom.jpg">
     <div class="content">

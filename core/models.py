@@ -55,3 +55,13 @@ class SessionMessage(models.Model):
 	
 	def __str__(self):
 		return self.content
+		
+	def sender_obj(self):
+		account = Account.objects.filter(user=self.sender)
+		mediator = Mediator.objects.filter(user=self.sender)
+		if account:
+			return account[0]
+		elif mediator:
+			return mediator[0]
+		else:
+			return None

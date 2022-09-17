@@ -14,6 +14,15 @@
 <div class="ui section divider"></div>
 <p><b>Parties</b></p>
 <div class="ui horizontal list">
+{% for par in dispute.parties.all %}
+<div class="item">
+    <img class="ui avatar image" src="{{par.image.url}}">
+    <div class="content">
+      <div class="header">{{par.fullname}}</div>
+
+    </div>
+  </div>
+{% endfor %}
   <div class="item">
     <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/tom.jpg">
     <div class="content">

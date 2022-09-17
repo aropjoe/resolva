@@ -21,6 +21,9 @@
   <a class="item" href="{% url 'core:disputes' %}">
     Disputes
   </a>
+   <a class="item" href="{% url 'accounts:mediators' %}">
+    Mediators
+  </a>
   <div class="right menu">
    {% if account %}
     <a class="ui item" href="{% url 'accounts:account' account.id %}">
@@ -28,14 +31,12 @@
     </a>
     {% elif mediator %}
     <a class="ui item" href="{% url 'accounts:mediator' mediator.id %}">
-      Account
+      My Account
     </a>
     {% endif %}
   </div>
 </div>
 
-<br>
-<br>
 	{% block body %}
 	
 	{% endblock %}

@@ -7,7 +7,7 @@
 {% block body %}
 <div class="ui text container segment">
 <h3>NEW DISPUTE</h3>
-<form class="ui form" method="POST" action="{% url 'accounts:create_dispute' %}">
+<form class="ui form" method="POST" action="{% url 'core:create_dispute' %}">
   {% csrf_token %}
   <div class="field">
     <label>Name</label>

@@ -6,6 +6,7 @@
 
 {% block body %}
 <div>
+<h3>NEW MEDIATOR</h3>
 <form class="ui form" method="POST" action="{% url 'accounts:login' %}" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="field">
